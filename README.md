@@ -4,10 +4,9 @@
 
 In order to execute tests, all you have to do is to execute this command:
 
-    $ docker run --rm=true -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile
+    $ docker run --rm -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile
 
-Please, be sure to have a correct Gruntfile that runs the tests on `grunt` command.
-
+Please, make sure you have defined an npm script named `test` that runs the unit tests.
 
 ## Use with your CI
 
@@ -16,10 +15,10 @@ that can be found in `PathToFolderContainingGruntFile`
 
 Usage:
 
-    $ docker run --rm=true -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile --output-dir /someFolderToPutReportIn
+    $ docker run --rm -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile --output-dir /someFolderToPutReportIn
 
 ## Build packages
 
 It can also build rpms, for that, specify the .spec filename:
 
-    $ docker run --rm=true -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile --output-dir /someFolderToPutReportIn --build mysuperspecfile.spec
+    $ docker run --rm -v $PWD:/tuleap enalean/tuleap-test-karma --path PathToFolderContainingGruntFile --output-dir /someFolderToPutReportIn --build mysuperspecfile.spec

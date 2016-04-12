@@ -42,7 +42,7 @@ fi
 if [ -n "$path" ]; then
     cd $BASE_PATH/$path
     install_environment
-    grunt
+    npm run test
 else
     echo "You must specify --path argument"
     exit 1;
