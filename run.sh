@@ -1,8 +1,9 @@
 #!/bin/bash
 
+# loglevel warn lets us see what packages were installed as opposed to --quiet
 install_environment(){
     npm install
-    bower install --allow-root --config.interactive=false
+    bower install --allow-root --loglevel=warn
 }
 
 BASE_PATH="/tuleap";
@@ -17,19 +18,19 @@ eval set -- "$options"
 while true
 do
     case "$1" in
-	--path)
-	    path=$2;
-	    shift 2;;
+    --path)
+        path=$2;
+        shift 2;;
     --output-dir)
         output_dir=$2;
         shift 2;;
     --build)
         spec_file=$2;
         shift 2;;
-	--)
-	    shift 1; break ;;
-	*)
-	    break ;;
+    --)
+        shift 1; break ;;
+    *)
+        break ;;
     esac
 done
 
