@@ -6,6 +6,15 @@ install_environment(){
     bower install --allow-root --loglevel=warn
 }
 
+configure_npm_registry(){
+    if [ ! -z "$NPM_REGISTRY" ]; then
+        npm config set registry "$NPM_REGISTRY"
+    fi
+    if [ ! -z "$NPM_USER" -a ! -z "$NPM_PASSWORD" -a ! -z "$NPM_EMAIL" ]; then
+      ./npm-login.sh "$NPM_USER" "$NPM_PASSWORD" "$NPM_EMAIL"
+    fi
+}
+
 BASE_PATH="/tuleap";
 TEST_REPORT="test-results.xml";
 
@@ -38,6 +47,8 @@ if [ -z "$output_dir" ]; then
     echo "You must specify an output dir argument";
     exit 1;
 fi
+
+configure_npm_registry
 
 # Run tests
 if [ -n "$path" ]; then

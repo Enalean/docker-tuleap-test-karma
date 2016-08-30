@@ -8,6 +8,7 @@ RUN apt-get update \
         git \
         libfontconfig \
         rpm \
+        expect \
     && apt-get clean
 
 # This is used by bower to disable interactive mode
@@ -28,6 +29,7 @@ RUN npm install --global \
         phantomjs-prebuilt
 
 COPY run.sh /run.sh
+COPY npm-login.sh /npm-login.sh
 
 VOLUME ["/tuleap"]
 
