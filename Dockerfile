@@ -8,6 +8,7 @@ RUN apt-get update \
         git \
         libfontconfig \
         expect \
+        ca-certificates \
     && apt-get clean
 
 # This is used by bower to disable interactive mode
