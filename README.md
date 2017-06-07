@@ -9,7 +9,7 @@ In order to execute tests, all you have to do is to execute this command:
 
 ```bash
 $ docker run --rm \
-    -v $PWD:/tuleap enalean/tuleap-test-karma \
+    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
     --path PathToFolderContainingGruntFile
 ```
 
@@ -24,21 +24,9 @@ Usage:
 
 ```bash
 $ docker run --rm \
-    -v $PWD:/tuleap enalean/tuleap-test-karma \
+    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
     --path PathToFolderContainingGruntFile \
     --output-dir /someFolderToPutReportIn
-```
-
-## Build packages
-
-It can also build rpms, for that, specify the .spec filename:
-
-```bash
-$ docker run --rm \
-    -v $PWD:/tuleap enalean/tuleap-test-karma \
-    --path PathToFolderContainingGruntFile \
-    --output-dir /someFolderToPutReportIn \
-    --build mysuperspecfile.spec
 ```
 
 ## Choose your NPM registry and NPM login
