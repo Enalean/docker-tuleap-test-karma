@@ -7,7 +7,6 @@ RUN apt-get update \
         npm \
         git \
         libfontconfig \
-        rpm \
         expect \
     && apt-get clean
 
