@@ -15,8 +15,13 @@ configure_npm_registry(){
     fi
 }
 
-BASE_PATH="/tuleap";
-TEST_REPORT="test-results.xml";
+readonly SOURCE_PATH='/tuleap';
+readonly WORK_DIR="$(mktemp --directory)";
+readonly TEST_REPORT='test-results.xml';
+
+function copy_sources_to_workdir() {
+    cp -Rf "$SOURCE_PATH/"* "$WORK_DIR"
+}
 
 set -e
 
@@ -49,7 +54,8 @@ configure_npm_registry
 
 # Run tests
 if [ -n "$path" ]; then
-    cd $BASE_PATH/$path
+    copy_sources_to_workdir
+    cd $WORK_DIR/$path
     install_environment
     npm run test
 else
@@ -59,5 +65,5 @@ fi
 
 if [ -n "$output_dir" ]; then
     mkdir -p $output_dir
-    mv $BASE_PATH/$path/$TEST_REPORT $output_dir/
+    mv $WORK_DIR/$path/$TEST_REPORT $output_dir/
 fi
