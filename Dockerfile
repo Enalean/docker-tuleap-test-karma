@@ -1,5 +1,4 @@
 FROM ubuntu:16.04
-MAINTAINER "Joris MASSON" <joris.masson@enalean.com>
 
 RUN apt-get update \
     && apt-get install -y \
