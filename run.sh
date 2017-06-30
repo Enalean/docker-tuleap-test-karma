@@ -2,6 +2,7 @@
 
 # loglevel warn lets us see what packages were installed as opposed to --quiet
 install_environment(){
+    npm install --global bower
     npm install
     bower install --allow-root --loglevel=warn
 }
