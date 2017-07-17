@@ -4,7 +4,9 @@
 install_environment(){
     npm install --global bower
     npm install
-    bower install --allow-root --loglevel=warn
+    if [ -f ./bower.json ]; then
+        bower install --allow-root --loglevel=warn
+    fi
 }
 
 configure_npm_registry(){
