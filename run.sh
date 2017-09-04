@@ -1,23 +1,5 @@
 #!/bin/bash
 
-# loglevel warn lets us see what packages were installed as opposed to --quiet
-install_environment(){
-    npm install --global bower
-    npm install
-    if [ -f ./bower.json ]; then
-        bower install --allow-root --loglevel=warn
-    fi
-}
-
-configure_npm_registry(){
-    if [ ! -z "$NPM_REGISTRY" ]; then
-        npm config set registry "$NPM_REGISTRY"
-    fi
-    if [ ! -z "$NPM_USER" -a ! -z "$NPM_PASSWORD" -a ! -z "$NPM_EMAIL" ]; then
-      ./npm-login.sh "$NPM_USER" "$NPM_PASSWORD" "$NPM_EMAIL"
-    fi
-}
-
 readonly SOURCE_PATH='/tuleap';
 readonly WORK_DIR="$(mktemp --directory)";
 readonly TEST_REPORT='test-results.xml';
@@ -53,13 +35,10 @@ if [ -z "$output_dir" ]; then
     exit 1;
 fi
 
-configure_npm_registry
-
 # Run tests
 if [ -n "$path" ]; then
     copy_sources_to_workdir
     cd $WORK_DIR/$path
-    install_environment
     npm run test
 else
     echo "You must specify --path argument"
