@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly SOURCE_PATH='/tuleap';
+readonly SOURCE_PATH='/sources';
 readonly WORK_DIR="$(mktemp --directory)";
 readonly OUTPUT_DIR='/output';
 readonly TEST_REPORT='test-results.xml';

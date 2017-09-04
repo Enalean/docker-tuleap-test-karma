@@ -9,7 +9,7 @@ In order to execute tests, all you have to do is to execute this command:
 
 ```bash
 $ docker run --rm --security-opt seccomp=seccomp_chrome.json \
-    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
+    -v $PWD:/sources:ro enalean/tuleap-test-karma \
     --path PathToFolderContainingPackageJsonFile
 ```
 
@@ -29,7 +29,7 @@ Usage:
 ```bash
 $ docker run --security-opt seccomp=seccomp_chrome.json \
     -name karma-tests-runner \
-    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
+    -v $PWD:/sources:ro enalean/tuleap-test-karma \
     --path PathToFolderContainingPackageJsonFile
 $ docker cp karma-tests-runner:/output/test-results.xml .
 $ docker rm -v karma-tests-runner

@@ -19,6 +19,11 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node \
 
 COPY run.sh /run.sh
 
-VOLUME ["/tuleap"]
+VOLUME ["/sources"]
+
+RUN groupadd -r test-runner && useradd --create-home -r -g test-runner test-runner \
+    && mkdir /output && chown -R test-runner:test-runner /output
+
+USER test-runner
 
 ENTRYPOINT ["/run.sh"]
