@@ -21,13 +21,16 @@ build step.
 ## Use with your CI
 
 Please, be sure that your karma configuration returns a file called `test-results.xml`
-that can be found in `PathToFolderContainingPackageJsonFile`.
+that can be found in `PathToFolderContainingPackageJsonFile`. The `test-results.xml`
+file will be put in the folder `/output` once the tests are executed.
 
 Usage:
 
 ```bash
-$ docker run --rm --security-opt seccomp=seccomp_chrome.json \
+$ docker run --security-opt seccomp=seccomp_chrome.json \
+    -name karma-tests-runner \
     -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
-    --path PathToFolderContainingPackageJsonFile \
-    --output-dir /someFolderToPutReportIn
+    --path PathToFolderContainingPackageJsonFile
+$ docker cp karma-tests-runner:/output/test-results.xml .
+$ docker rm -v karma-tests-runner
 ```

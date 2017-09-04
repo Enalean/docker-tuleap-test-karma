@@ -2,6 +2,7 @@
 
 readonly SOURCE_PATH='/tuleap';
 readonly WORK_DIR="$(mktemp --directory)";
+readonly OUTPUT_DIR='/output';
 readonly TEST_REPORT='test-results.xml';
 
 function copy_sources_to_workdir() {
@@ -20,20 +21,12 @@ do
     --path)
         path=$2;
         shift 2;;
-    --output-dir)
-        output_dir=$2;
-        shift 2;;
     --)
         shift 1; break ;;
     *)
         break ;;
     esac
 done
-
-if [ -z "$output_dir" ]; then
-    echo "You must specify an output dir argument";
-    exit 1;
-fi
 
 # Run tests
 if [ -n "$path" ]; then
@@ -45,7 +38,5 @@ else
     exit 1;
 fi
 
-if [ -n "$output_dir" ]; then
-    mkdir -p $output_dir
-    mv $WORK_DIR/$path/$TEST_REPORT $output_dir/
-fi
+mkdir -p $OUTPUT_DIR
+mv $WORK_DIR/$path/$TEST_REPORT $OUTPUT_DIR/
