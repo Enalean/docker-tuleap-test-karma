@@ -8,9 +8,9 @@
 In order to execute tests, all you have to do is to execute this command:
 
 ```bash
-$ docker run --rm \
+$ docker run --rm --security-opt seccomp=seccomp_chrome.json \
     -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
-    --path PathToFolderContainingGruntFile
+    --path PathToFolderContainingPackageJsonFile
 ```
 
 You need to have defined `npm run test` that runs unit tests.
@@ -21,13 +21,13 @@ build step.
 ## Use with your CI
 
 Please, be sure that your karma configuration returns a file called `test-results.xml`
-that can be found in `PathToFolderContainingGruntFile`.
+that can be found in `PathToFolderContainingPackageJsonFile`.
 
 Usage:
 
 ```bash
-$ docker run --rm \
+$ docker run --rm --security-opt seccomp=seccomp_chrome.json \
     -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
-    --path PathToFolderContainingGruntFile \
+    --path PathToFolderContainingPackageJsonFile \
     --output-dir /someFolderToPutReportIn
 ```
