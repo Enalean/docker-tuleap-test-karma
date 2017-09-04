@@ -14,6 +14,9 @@ $ docker run --rm \
 ```
 
 You need to have defined `npm run test` that runs unit tests.
+It is expected that all dependencies have been downloaded and built if necessary
+before launching the tests. This Docker image will not take care of the download/
+build step.
 
 ## Use with your CI
 
@@ -28,12 +31,3 @@ $ docker run --rm \
     --path PathToFolderContainingGruntFile \
     --output-dir /someFolderToPutReportIn
 ```
-
-## Choose your NPM registry and NPM login
-
-You can use a different NPM registry and log in with the user of your choice using
-the following environment variables:
-  * ``NPM_REGISTRY``: registry address
-  * ``NPM_USER``: user name used to log in into the registry
-  * ``NPM_PASSWORD``: password of the user
-  * ``NPM_EMAIL``: public mail that will be used if you publish a package
