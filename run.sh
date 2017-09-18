@@ -1,13 +1,8 @@
 #!/bin/bash
 
 readonly SOURCE_PATH='/sources';
-readonly WORK_DIR="$(mktemp --directory)";
 readonly OUTPUT_DIR='/output';
 readonly TEST_REPORT='test-results.xml';
-
-function copy_sources_to_workdir() {
-    cp -Rf "$SOURCE_PATH/"* "$WORK_DIR"
-}
 
 set -e
 
@@ -30,13 +25,9 @@ done
 
 # Run tests
 if [ -n "$path" ]; then
-    copy_sources_to_workdir
-    cd $WORK_DIR/$path
-    npm run test
+    cd "$SOURCE_PATH/$path"
+    REPORT_OUTPUT_FOLDER="$OUTPUT_DIR" npm run test
 else
     echo "You must specify --path argument"
     exit 1;
 fi
-
-mkdir -p $OUTPUT_DIR
-mv $WORK_DIR/$path/$TEST_REPORT $OUTPUT_DIR/

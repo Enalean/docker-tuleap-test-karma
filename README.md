@@ -18,6 +18,9 @@ It is expected that all dependencies have been downloaded and built if necessary
 before launching the tests. This Docker image will not take care of the download/
 build step.
 
+If you use a JUnit reporter, it is expected the `outputDir` is configurable
+through the environnement variable `REPORT_OUTPUT_FOLDER`.
+
 ## Use with your CI
 
 Please, be sure that your karma configuration returns a file called `test-results.xml`
