@@ -1,11 +1,11 @@
 FROM ubuntu:16.04
 
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
         nodejs \
         npm \
         git \
-        libfontconfig \
+        chromium-browser \
         ca-certificates \
     && apt-get clean
 
@@ -17,15 +17,13 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node \
     && npm install --global npm@5.3.0 \
     && npm config set progress false
 
-## Install base node modules
-## The crappy stuff for PhantomJS is here because since npm 5 phantomjs-prebuilt
-## can not be installed globally (see https://github.com/Medium/phantomjs/issues/707)
-RUN npm install --no-save phantomjs-prebuilt && \
-        mv /node_modules/phantomjs-prebuilt /usr/local/lib/node_modules/phantomjs-prebuilt && \
-        ln -s /usr/local/lib/node_modules/phantomjs-prebuilt/bin/phantomjs /usr/local/bin/phantomjs
-
 COPY run.sh /run.sh
 
-VOLUME ["/tuleap"]
+VOLUME ["/sources"]
+
+RUN groupadd -r test-runner && useradd --create-home -r -g test-runner test-runner \
+    && mkdir /output && chown -R test-runner:test-runner /output
+
+USER test-runner
 
 ENTRYPOINT ["/run.sh"]

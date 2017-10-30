@@ -8,9 +8,9 @@
 In order to execute tests, all you have to do is to execute this command:
 
 ```bash
-$ docker run --rm \
-    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
-    --path PathToFolderContainingGruntFile
+$ docker run --rm --security-opt seccomp=seccomp_chrome.json \
+    -v $PWD:/sources:ro enalean/tuleap-test-karma \
+    --path PathToFolderContainingPackageJsonFile
 ```
 
 You need to have defined `npm run test` that runs unit tests.
@@ -18,16 +18,22 @@ It is expected that all dependencies have been downloaded and built if necessary
 before launching the tests. This Docker image will not take care of the download/
 build step.
 
+If you use a JUnit reporter, it is expected the `outputDir` is configurable
+through the environnement variable `REPORT_OUTPUT_FOLDER`.
+
 ## Use with your CI
 
 Please, be sure that your karma configuration returns a file called `test-results.xml`
-that can be found in `PathToFolderContainingGruntFile`.
+that can be found in `PathToFolderContainingPackageJsonFile`. The `test-results.xml`
+file will be put in the folder `/output` once the tests are executed.
 
 Usage:
 
 ```bash
-$ docker run --rm \
-    -v $PWD:/tuleap:ro enalean/tuleap-test-karma \
-    --path PathToFolderContainingGruntFile \
-    --output-dir /someFolderToPutReportIn
+$ docker run --security-opt seccomp=seccomp_chrome.json \
+    -name karma-tests-runner \
+    -v $PWD:/sources:ro enalean/tuleap-test-karma \
+    --path PathToFolderContainingPackageJsonFile
+$ docker cp karma-tests-runner:/output/test-results.xml .
+$ docker rm -v karma-tests-runner
 ```
