@@ -5,6 +5,7 @@ RUN apt-get update -y \
         git \
         chromium-browser \
         ca-certificates \
+        curl \
         apt-transport-https \
     && curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
     && echo "deb https://deb.nodesource.com/node_6.x xenial main" > /etc/apt/sources.list.d/nodesource.list \
