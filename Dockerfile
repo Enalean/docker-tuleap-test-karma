@@ -17,8 +17,7 @@ RUN apt-get update -y \
 ENV CI true
 
 # Disable cli progress animation in npm
-RUN ln -s /usr/bin/nodejs /usr/bin/node \
-    && npm install --global npm@5.5.1 \
+RUN npm install --global npm@5.5.1 \
     && npm config set progress false
 
 COPY run.sh /run.sh
