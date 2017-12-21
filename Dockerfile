@@ -1,12 +1,15 @@
 FROM ubuntu:16.04
 
-RUN apt-get update \
+RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
-        nodejs \
-        npm \
         git \
         chromium-browser \
         ca-certificates \
+        apt-transport-https \
+    && curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
+    && echo "deb https://deb.nodesource.com/node_6.x xenial main" > /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean
 
 # This is used by bower to disable interactive mode
