@@ -12,7 +12,7 @@ RUN apt-get update -y \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean \
-    && npm install --global npm@5.5.1 \
+    && npm install --global npm@5.8.0 \
     && npm config set progress false
 
 # This is used by bower to disable interactive mode
