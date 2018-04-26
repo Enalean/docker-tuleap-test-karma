@@ -1,16 +1,12 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
+        nodejs \
+        npm \
         git \
         chromium-browser \
         ca-certificates \
-        curl \
-        apt-transport-https \
-    && curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-    && echo "deb https://deb.nodesource.com/node_6.x xenial main" > /etc/apt/sources.list.d/nodesource.list \
-    && apt-get update -y \
-    && apt-get install -y --no-install-recommends nodejs \
     && apt-get clean \
     && npm install --global npm@5.8.0 \
     && npm config set progress false
