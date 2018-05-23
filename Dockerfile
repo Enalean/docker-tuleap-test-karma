@@ -8,7 +8,7 @@ RUN apt-get update -y \
         chromium-browser \
         ca-certificates \
     && apt-get clean \
-    && npm install --global npm@5.8.0 \
+    && npm install --global npm@6.0.1 \
     && npm config set progress false
 
 # This is used by bower to disable interactive mode
