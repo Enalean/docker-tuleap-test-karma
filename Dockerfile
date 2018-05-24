@@ -1,11 +1,14 @@
 FROM ubuntu:18.04
 
+# Remove tag version for chromium-browser and the dep package chromium-codecs-ffmpeg-extra
+# once https://bugs.chromium.org/p/chromium/issues/detail?id=829884 is fixed
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends \
         nodejs \
         npm \
         git \
-        chromium-browser \
+        chromium-browser=65.0.3325.181-0ubuntu1 \
+        chromium-codecs-ffmpeg-extra=65.0.3325.181-0ubuntu1 \
         ca-certificates \
     && apt-get clean \
     && npm install --global npm@6.0.1 \
