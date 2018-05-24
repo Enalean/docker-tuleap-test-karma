@@ -11,7 +11,7 @@ RUN apt-get update -y \
         chromium-codecs-ffmpeg-extra=65.0.3325.181-0ubuntu1 \
         ca-certificates \
     && apt-get clean \
-    && npm install --global npm@6.0.1 \
+    && npm install --global npm@6.1.0 \
     && npm config set progress false
 
 # This is used by bower to disable interactive mode
