@@ -8,7 +8,7 @@ RUN apt-get update -y \
         chromium-browser \
         ca-certificates \
     && apt-get clean \
-    && npm install --global npm@6.8.0 \
+    && npm install --global npm@6.9.0 \
     && npm config set progress false
 
 COPY run.sh /run.sh
