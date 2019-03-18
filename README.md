@@ -1,5 +1,3 @@
-[![](https://badge.imagelayers.io/enalean/tuleap-test-karma:latest.svg)](https://imagelayers.io/?images=enalean/tuleap-test-karma:latest 'Get your own badge on imagelayers.io')
-
 # Docker image to execute Tuleap Karma tests
 
 
